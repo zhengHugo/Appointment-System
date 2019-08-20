@@ -2,15 +2,8 @@
 
 
 def main():
-    print("---------------welcome---------------")
+    print("---------------Welcome---------------")
     print("student or teacher?")
-    # while(identity != '1' or identity != '2'):
-    #     # print(identity)
-    #     identity = input("1. student \t 2. teacher\n")
-    # if (identity == 1):
-    #     print(1)
-    # elif (identity == 2):
-    #     print(2)
 
     while True:
         try:
