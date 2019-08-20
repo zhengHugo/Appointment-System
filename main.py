@@ -1,6 +1,6 @@
 # main function for running
-import student as student
-import teacher as teacher
+import student
+import teacher
 
 
 def main():
@@ -25,9 +25,9 @@ def main():
                     return
     else:
         while True:
-            success = teacher.login()
+            (t, success) = teacher.login()
             if success:
-                teacher.main()
+                t.main()
                 break
             else:
                 print("Incorrect ID or password!\n Please try again or exit\n")

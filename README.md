@@ -48,10 +48,12 @@ Operations:
 - Approve an appointment
 - Cancel an appointment
 - Mark a missing appointment
+- Go to home page
 
 
 Change password interface
 - Old password:
 - New password:
 - Repeat new password:
+- Go to home page
 
