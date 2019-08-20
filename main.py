@@ -1,31 +1,54 @@
 # main function for running
+import student as student
+import teacher as teacher
 
 
 def main():
     print("---------------Welcome---------------")
     print("student or teacher?")
 
+    identity = int(correct_input(
+        "1. student \t 2. teacher \n", lambda x: x == '1' or x == '2'))
+    if identity == 1:
+        while True:
+            success = student.login()
+            if success:
+                student.main()
+                break
+            else:
+                print("Incorrect ID or password!\n Please try again or exit\n")
+                option = int(correct_input(
+                    "\n1. Try again\n 2. Exit", lambda x: x == '1' or x == '2'))
+                if (option == 1):
+                    continue
+                else:
+                    return
+    else:
+        while True:
+            success = teacher.login()
+            if success:
+                teacher.main()
+                break
+            else:
+                print("Incorrect ID or password!\n Please try again or exit\n")
+                option = int(correct_input(
+                    "\n1. Try again\n 2. Exit", lambda x: x == '1' or x == '2'))
+                if (option == 1):
+                    continue
+                else:
+                    return
+
+
+def correct_input(msg, evaluate):
     while True:
         try:
-            identity = input("1. student \t 2. teacher \n")
-            assert identity == '1' or identity == '2'
+            option = input(msg)
+            assert evaluate(option)
         except AssertionError:
-            print("\nWrong input! Please select 1 or 2\n")
+            print("\nPlease try again\n")
             continue
         break
-    if identity ==1:
-        studentbussi1 = input('what do you want to do today? \n 1. View/edit my appointments \n 2. Apply for a new appointment \n 3. Change password \n')
-        if studentbuss1 == 1:
-                # view pr edit appointment
-        elif studentbussi1 == 2 :
-                # apply #
-        elif studentbussi1 ==3 :
-                #change#
-
-        #search system#
-    else:
-        teacherbussi1 = input('what do you what to do taday? \n 1.Set office hours \n 2. View/edit my appointments \n 3.Change password')
-
+    return option
 
 
 if __name__ == "__main__":
