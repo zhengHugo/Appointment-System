@@ -57,3 +57,31 @@ Change password interface
 - Repeat new password:
 - Go to home page
 
+## Database Design:
+Table "Student" (
+    SID     int             NOT NULL
+    NAME    varchar (255)   NOT NULL
+    PRIMARY KEY (SID)
+)
+
+Table "Teacher" (
+    TID     int             NOT NULL
+    NAME    varchar (255)   NOT NULL
+    PRIMARY KEY (TID)
+)
+
+Table "Appointment" (
+    ID      int         NOT NULL
+    TID     int         NOT NULL
+    SID     int         NOT NULL
+    STIME   datetime    NOT NULL
+    ETIME   datetime    NOT NULL
+    STATUS  tinyint     NOT NULL
+)
+Status code explanation:
+- 0 = initiated
+- 1 = approved
+- 2 = completed
+- 3 = refused
+- 4 = canceled
+- 5 = missed
