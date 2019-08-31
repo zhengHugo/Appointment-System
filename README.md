@@ -74,8 +74,9 @@ Table "Appointment" (
     ID      int         NOT NULL
     TID     int         NOT NULL
     SID     int         NOT NULL
-    STIME   datetime    NOT NULL
-    ETIME   datetime    NOT NULL
+    DATE    date        NOT NULL
+    STIME   time        NOT NULL
+    ETIME   time        NOT NULL
     STATUS  tinyint     NOT NULL
 )
 Status code explanation:
