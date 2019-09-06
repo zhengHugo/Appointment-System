@@ -58,27 +58,32 @@ Change password interface
 - Go to home page
 
 ## Database Design:
-Table "Student" (
-    SID     int             NOT NULL
-    NAME    varchar (255)   NOT NULL
+Table "student" (
+    sid     	int             student id
+    name    	varchar (255)   
+    password	varchar (255)
     PRIMARY KEY (SID)
 )
 
-Table "Teacher" (
-    TID     int             NOT NULL
-    NAME    varchar (255)   NOT NULL
+Table "teacher" (
+    tid     	int		teacher id
+    name    	varchar (255)   
+    password	varchar (255)
+    address	varchar(255)
+
     PRIMARY KEY (TID)
 )
 
-Table "Appointment" (
-    ID      int         NOT NULL
-    TID     int         NOT NULL
-    SID     int         NOT NULL
-    DATE    date        NOT NULL
-    STIME   time        NOT NULL
-    ETIME   time        NOT NULL
-    STATUS  tinyint     NOT NULL
+Table "appointment" (
+    ID      int         primary key
+    TID     int         teacher id
+    SID     int         student id
+    DATE    date        
+    STIME   time        start time
+    ETIME   time        end time
+    STATUS  tinyint     as explained below
 )
+
 Status code explanation:
 - 0 = initiated
 - 1 = approved
@@ -86,3 +91,11 @@ Status code explanation:
 - 3 = refused
 - 4 = canceled
 - 5 = missed
+
+Table "teacher_officehour" (
+    id		int 		primary key
+    tid		int 		teacher id
+    weekday	tinyint		as explained below	
+    stime	time		start time	
+    etime	time 		end time
+)

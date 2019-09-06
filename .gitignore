@@ -1,2 +1,5 @@
 .vscode/*
 demo.py
+test.py
+logintest.py
+__pycache__
