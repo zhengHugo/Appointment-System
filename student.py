@@ -1,5 +1,7 @@
-from getpass import getpass
 import mysql.connector
+from main import correct_input
+from main import main
+from getpass import getpass
 from teacher import dbconfig
 # Student.py for handling students requests
 
@@ -14,6 +16,8 @@ def login():
     sql = "select name, password from student where sid = %s"
     mycursor.execute(sql, (sid,))
     result = mycursor.fetchall()
+    mycursor.close()
+    cnx.close()
 
     # user not found
     if not result:
@@ -32,13 +36,29 @@ class Student:
 
     def main(self):
         print("Welcome, {}!".format(self.name))
+        print("What do you want to do today!")
+        print("1. View/edit my appointments")
+        print("2. Apply for a new appointment")
+        print("3. Change my password")
+        print("4. Exit")
+        option = int(correct_input(
+            "", lambda x: x == '1' or x == '2' or x == '3' or x == '4'))
+        if option == 1:
+            self.viewMyAppointments()
+        elif option == 2:
+            self.newAppointment()
+        elif option == 3:
+            self.changePassword()
+        else:
+            main()
 
         return
-    # studentbussi1 = input(
-    #     'what do you want to do today? \n 1. View/edit my appointments \n 2. Apply for a new appointment \n 3. Change password \n')
-    # if studentbussi1 == 1:
-    #             # view pr edit appointment
-    # elif studentbussi1 == 2:
-    #             # apply #
-    #     elif studentbussi1 == 3:
-    #             #change#
+
+    def viewMyAppointments(self):
+        return
+
+    def newAppointment(self):
+        return
+
+    def changePassword(self):
+        return

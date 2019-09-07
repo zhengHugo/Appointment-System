@@ -72,8 +72,8 @@ class Teacher:
         print("2. View edit my appointments")
         print("3. Change password")
         print("4. Exit")
-        option = correct_input(
-            "", lambda x: x == '1' or x == '2' or x == '3' or x == '4')
+        option = int(correct_input(
+            "", lambda x: x == '1' or x == '2' or x == '3' or x == '4'))
         if option == 1:
             self.setOfficeHour()
         elif option == 2:
