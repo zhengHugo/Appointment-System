@@ -11,9 +11,9 @@ def main():
         "1. Student \t 2. Teacher \t 3. Exit", lambda x: x == '1' or x == '2' or x == '3'))
     if identity == 1:
         while True:
-            success = student.login()
+            (s, success) = student.login()
             if success:
-                student.main()
+                s.main()
                 break
             else:
                 print("Incorrect ID or password!\n Please try again or exit\n")
