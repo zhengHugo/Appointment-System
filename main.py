@@ -8,7 +8,7 @@ def main():
     print("student or teacher?")
 
     identity = int(correct_input(
-        "1. Student \t 2. Teacher \t 3. Exit", lambda x: x == '1' or x == '2' or x == '3'))
+        "1. Student \t 2. Teacher \t 3. Exit\n", lambda x: x == '1' or x == '2' or x == '3'))
     if identity == 1:
         while True:
             (s, success) = student.login()
@@ -27,6 +27,7 @@ def main():
         while True:
             (t, success) = teacher.login()
             if success:
+                print("Welcome, {}!".format(t.name))
                 t.main()
                 break
             else:

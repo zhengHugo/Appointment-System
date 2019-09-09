@@ -1,5 +1,5 @@
-from main import correct_input
-from enum import Enum, auto
+from tabulate import tabulate
+from enum import Enum
 from getpass import getpass
 import mysql.connector
 import time
@@ -17,6 +17,7 @@ dbconfig = {
 
 def login():
     # user input
+    # TODO: try convert input into integer directly
     tid = int(input("ID:"))
     password = getpass()
 
@@ -60,19 +61,18 @@ def login():
 
 class Teacher:
     def __init__(self, tid, name, office_hour, address):
-        self.id = tid
+        self.tid = tid
         self.name = name
         self.office_hour = office_hour
         self.address = address
 
     def main(self):
-        print("Welcome, {}!".format(self.name))
         print("What do you want to do today?")
         print("1. Set office hours")
         print("2. View edit my appointments")
         print("3. Change password")
         print("4. Exit")
-        option = int(correct_input(
+        option = int(main.correct_input(
             "", lambda x: x == '1' or x == '2' or x == '3' or x == '4'))
         if option == 1:
             self.setOfficeHour()
@@ -89,12 +89,45 @@ class Teacher:
         return
 
     def viewMyAppointments(self):
+
+        # fetch data from database
         cnx = mysql.connector.connect(**dbconfig)
         cursor = cnx.cursor()
-        
+        sql = "select id, student.sid, name, date, stime, etime, status from appointment join student on student.sid = appointment.sid"
+        cursor.execute(sql)
+        appointments = cursor.fetchall()
+        cursor.close()
+        cnx.close()
+
+        # prepare data for presentation
+        appointments = [list(row) for row in appointments]
+        aids = [row[0] for row in appointments]  # appointment true id
+        statuses = ['Initiated', 'Approved',
+                    'Completed', 'Refused', 'Canceled', 'Missed']
+        for i in range(len(appointments)):
+            # parse status
+            appointments[i][5] = statuses[appointments[i][5]]
+
+            # add fake id to appointment (for user to select)
+            appointments[0] = i + 1
+        print(tabulate(appointments, headers=[
+              '', 'Student ID', 'Student name', 'Date', 'From', 'To', 'Status'], tablefmt='orgtbl'))
+
+        # Let user select
+        print(
+            "Select which appointment you want to edit, or type 0 to go back to main menu")
+        option = main.correct_input("", lambda x: x in list(
+            map(str, range(len(appointments)+1))))
+        if option == '0':
+            self.main()
+        else:
+            self.editAppointment(aids[int(option)-1])
         return
 
     def changePassword(self):
+        return
+
+    def editAppointment(self, aid):
         return
 
 

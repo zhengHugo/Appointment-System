@@ -60,8 +60,7 @@ Change password interface
 - Go to home page
 
 ## Database Design:
-Table "student" :
-
+### Table "student" :
 | Field    | Type          | Null | Key | Defaul | Extra |
 | -------- | ------------- | ---- | --- | ------ | ----- |
 | SID      | int           | NO   | PRI | NULL   |       |
@@ -70,15 +69,15 @@ Table "student" :
     
 
 
-Table "teacher" 
+### Table "teacher" 
 | Field    | Type          | Null | Key | Defaul | Extra |
 | -------- | ------------- | ---- | --- | ------ | ----- |
-| SID      | int           | NO   | PRI | NULL   |       |
+| TID      | int           | NO   | PRI | NULL   |       |
 | NAME     | varchar (255) | NO   |     | NULL   |       |
 | PASSWORD | varchar (255) | NO   |     | NULL   |       |
 | ADDRESS  | varchar (255) | NO   |     | NULL   |       |
 
-Table "appointment" 
+### Table "appointment" 
 | Field  | Type    | Null | Key | Defaul | Extra          |
 | ------ | ------- | ---- | --- | ------ | -------------- |
 | ID     | int     | NO   | PRI | NULL   | auto_increment |
@@ -97,7 +96,7 @@ Status code explanation:
 - 4 = canceled
 - 5 = missed
 
-Table "teacher_officehour" 
+### Table "teacher_officehour" 
 
 | Field   | Type    | Null | Key | Defaul | Extra          |
 | ------- | ------- | ---- | --- | ------ | -------------- |

@@ -1,6 +1,5 @@
 import mysql.connector
-from main import correct_input
-from main import main
+import main
 from getpass import getpass
 from teacher import dbconfig
 # Student.py for handling students requests
@@ -41,7 +40,7 @@ class Student:
         print("2. Apply for a new appointment")
         print("3. Change my password")
         print("4. Exit")
-        option = int(correct_input(
+        option = int(main.correct_input(
             "", lambda x: x == '1' or x == '2' or x == '3' or x == '4'))
         if option == 1:
             self.viewMyAppointments()
@@ -50,7 +49,7 @@ class Student:
         elif option == 3:
             self.changePassword()
         else:
-            main()
+            main.main()
 
         return
 
