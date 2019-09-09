@@ -60,7 +60,8 @@ Change password interface
 - Go to home page
 
 ## Database Design:
-### Table "student" :
+### Table "student":
+
 | Field    | Type          | Null | Key | Defaul | Extra |
 | -------- | ------------- | ---- | --- | ------ | ----- |
 | SID      | int           | NO   | PRI | NULL   |       |
@@ -69,7 +70,8 @@ Change password interface
     
 
 
-### Table "teacher" 
+### Table "teacher":
+
 | Field    | Type          | Null | Key | Defaul | Extra |
 | -------- | ------------- | ---- | --- | ------ | ----- |
 | TID      | int           | NO   | PRI | NULL   |       |
@@ -77,7 +79,8 @@ Change password interface
 | PASSWORD | varchar (255) | NO   |     | NULL   |       |
 | ADDRESS  | varchar (255) | NO   |     | NULL   |       |
 
-### Table "appointment" 
+### Table "appointment":
+
 | Field  | Type    | Null | Key | Defaul | Extra          |
 | ------ | ------- | ---- | --- | ------ | -------------- |
 | ID     | int     | NO   | PRI | NULL   | auto_increment |
