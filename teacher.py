@@ -89,6 +89,9 @@ class Teacher:
         return
 
     def viewMyAppointments(self):
+        cnx = mysql.connector.connect(**dbconfig)
+        cursor = cnx.cursor()
+        
         return
 
     def changePassword(self):

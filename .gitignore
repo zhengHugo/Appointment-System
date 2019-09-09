@@ -1,5 +1,4 @@
-.vscode/*
-demo.py
-test.py
-logintest.py
-__pycache__
+.vscode/
+*demo*.py
+*test*.py
+__pycache__/

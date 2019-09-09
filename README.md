@@ -30,6 +30,7 @@ Operations:
 
 Set office hours in teacher’s interface
 My office hours:
+
 | Weekday   | Start time | End time |
 | --------- | ---------- | -------- |
 | Wednesday | 3:00 PM    | 5:00 PM  |
@@ -38,6 +39,7 @@ Two options here: Edit entry, new entry
 
 ## View/Edit my appointments in teachers’ interface
 My Appointments:
+
 | Student | Date       | Start time | End time | Status    |
 | ------- | ---------- | ---------- | -------- | --------- |
 | Bob     | 2019-01-01 | 3:00 PM    | 5:00 PM  | Initiated |
@@ -58,31 +60,34 @@ Change password interface
 - Go to home page
 
 ## Database Design:
-Table "student" (
-    sid     	int             student id
-    name    	varchar (255)   
-    password	varchar (255)
-    PRIMARY KEY (SID)
-)
+Table "student" :
 
-Table "teacher" (
-    tid     	int		teacher id
-    name    	varchar (255)   
-    password	varchar (255)
-    address	varchar(255)
+| Field    | Type          | Null | Key | Defaul | Extra |
+| -------- | ------------- | ---- | --- | ------ | ----- |
+| SID      | int           | NO   | PRI | NULL   |       |
+| NAME     | varchar (255) | NO   |     | NULL   |       |
+| PASSWORD | varchar (255) | NO   |     | NULL   |       |
+    
 
-    PRIMARY KEY (TID)
-)
 
-Table "appointment" (
-    ID      int         primary key
-    TID     int         teacher id
-    SID     int         student id
-    DATE    date        
-    STIME   time        start time
-    ETIME   time        end time
-    STATUS  tinyint     as explained below
-)
+Table "teacher" 
+| Field    | Type          | Null | Key | Defaul | Extra |
+| -------- | ------------- | ---- | --- | ------ | ----- |
+| SID      | int           | NO   | PRI | NULL   |       |
+| NAME     | varchar (255) | NO   |     | NULL   |       |
+| PASSWORD | varchar (255) | NO   |     | NULL   |       |
+| ADDRESS  | varchar (255) | NO   |     | NULL   |       |
+
+Table "appointment" 
+| Field  | Type    | Null | Key | Defaul | Extra          |
+| ------ | ------- | ---- | --- | ------ | -------------- |
+| ID     | int     | NO   | PRI | NULL   | auto_increment |
+| TID    | int     | NO   |     | NULL   |                |
+| SID    | int     | NO   |     | NULL   |                |
+| STIME  | time    | NO   |     | NULL   |                |
+| ETIME  | time    | NO   |     | NULL   |                |
+| STATUS | tinyint | NO   |     | NULL   |                |
+| DATE   | date    | NO   |     | NULL   |                |
 
 Status code explanation:
 - 0 = initiated
@@ -92,10 +97,12 @@ Status code explanation:
 - 4 = canceled
 - 5 = missed
 
-Table "teacher_officehour" (
-    id		int 		primary key
-    tid		int 		teacher id
-    weekday	tinyint		as explained below	
-    stime	time		start time	
-    etime	time 		end time
-)
+Table "teacher_officehour" 
+
+| Field   | Type    | Null | Key | Defaul | Extra          |
+| ------- | ------- | ---- | --- | ------ | -------------- |
+| ID      | int     | NO   | PRI | NULL   | auto_increment |
+| TID     | int     | NO   |     | NULL   |                |
+| WEEKDAY | tinyint | NO   |     | NULL   |                |
+| STIME   | time    | NO   |     | NULL   |                |
+| ETIME   | time    | NO   |     | NULL   |                |

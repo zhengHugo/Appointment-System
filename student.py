@@ -55,6 +55,7 @@ class Student:
         return
 
     def viewMyAppointments(self):
+
         return
 
     def newAppointment(self):
