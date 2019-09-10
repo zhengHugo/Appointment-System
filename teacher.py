@@ -1,9 +1,9 @@
 from tabulate import tabulate
 from enum import Enum
 from getpass import getpass
+from util import correct_input
 import mysql.connector
 import time
-import main
 
 
 dbconfig = {
@@ -18,7 +18,7 @@ dbconfig = {
 def login():
     # user input
     # TODO: try convert input into integer directly
-    tid = int(input("ID:"))
+    tid = input("ID:")
     password = getpass()
 
     # database connection
@@ -72,7 +72,7 @@ class Teacher:
         print("2. View edit my appointments")
         print("3. Change password")
         print("4. Exit")
-        option = int(main.correct_input(
+        option = int(correct_input(
             "", lambda x: x == '1' or x == '2' or x == '3' or x == '4'))
         if option == 1:
             self.setOfficeHour()
@@ -82,7 +82,6 @@ class Teacher:
             self.changePassword()
         else:
             print("Bye!")
-            main.main()
         return
 
     def setOfficeHour(self):
@@ -106,17 +105,21 @@ class Teacher:
                     'Completed', 'Refused', 'Canceled', 'Missed']
         for i in range(len(appointments)):
             # parse status
-            appointments[i][5] = statuses[appointments[i][5]]
+            appointments[i][6] = statuses[appointments[i][6]]
 
             # add fake id to appointment (for user to select)
-            appointments[0] = i + 1
+            appointments[i][0] = i + 1
+
+            # Trim off seconds in time
+            appointments[i][4] = str(appointments[i][4])[:5]
+            appointments[i][5] = str(appointments[i][5])[:5]
         print(tabulate(appointments, headers=[
               '', 'Student ID', 'Student name', 'Date', 'From', 'To', 'Status'], tablefmt='orgtbl'))
 
         # Let user select
         print(
             "Select which appointment you want to edit, or type 0 to go back to main menu")
-        option = main.correct_input("", lambda x: x in list(
+        option = correct_input("", lambda x: x in list(
             map(str, range(len(appointments)+1))))
         if option == '0':
             self.main()
